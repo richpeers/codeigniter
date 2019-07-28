@@ -1,15 +1,42 @@
-<h2><?php echo $title; ?></h2>
+<main class="container">
 
-<?php echo validation_errors(); ?>
 
-<?php echo form_open('/news/create'); ?>
+	<div class="row">
+		<div class="col-md-8 offset-md-2 mt-4">
 
-<label for="title">Title</label>
-<input type="input" name="title"/><br/>
+			<?php echo form_open('/news/create'); ?>
 
-<label for="text">Text</label>
-<textarea name="text"></textarea><br/>
+			<div class="card bg-light">
+				<div class="card-header">
+					Create News Item
+				</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label class="control-label" for="title">Title</label>
+						<input type="text" class="form-control" name="title"/>
+					</div>
 
-<input type="submit" name="submit" value="Create news item"/>
+					<div class="form-group">
+						<label class="control-label" for="text">Text</label>
+						<textarea class="form-control" rows="5" name="text"></textarea>
+					</div>
 
-</form>
+					<div class="text-danger">
+						<?php echo validation_errors(); ?>
+					</div>
+
+					<div class="pt-1 text-right">
+						<button type="submit" name="submit" class="btn btn-success">Save</button>
+						<a href="/news" class="btn btn-danger ml-2">Cancel</a>
+					</div>
+
+				</div>
+
+			</div>
+
+			</form>
+		</div>
+	</div>
+
+
+</main>
