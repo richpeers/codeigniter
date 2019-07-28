@@ -53,8 +53,21 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+//	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
+// use SERVER_NAME to set environment
+define('ENVIRONMENT', (($_SERVER['SERVER_NAME'] == 'codeigniter.richpeers.co.uk') ||
+    ($_SERVER['SERVER_NAME'] == 'www.codeigniter.richpeers.co.uk'))?
+    'production' : 'development');
+
+
+// redirect to https
+if (ENVIRONMENT === 'production' && isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] !== 'https')
+{
+    header('301 Moved Permanently HTTP/1.1');
+    header('Location: https://codeigniter.richpeers.co.uk'.$_SERVER['REQUEST_URI']);
+    exit;
+}
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -97,7 +110,7 @@ switch (ENVIRONMENT)
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
  */
-	$system_path = 'system';
+	$system_path = '../system';
 
 /*
  *---------------------------------------------------------------
@@ -114,7 +127,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'application';
+	$application_folder = '../application';
 
 /*
  *---------------------------------------------------------------
@@ -312,4 +325,4 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
-require_once BASEPATH.'core/CodeIgniter.php';
+require_once BASEPATH . 'core/CodeIgniter.php';
