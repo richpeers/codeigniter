@@ -55,6 +55,7 @@
  */
 //	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
+
 // use SERVER_NAME to set environment
 define('ENVIRONMENT', (($_SERVER['SERVER_NAME'] == 'codeigniter.richpeers.co.uk') ||
 	($_SERVER['SERVER_NAME'] == 'www.codeigniter.richpeers.co.uk')) ?
@@ -288,6 +289,20 @@ if (!isset($view_folder[0]) && is_dir(APPPATH . 'views' . DIRECTORY_SEPARATOR)) 
 }
 
 define('VIEWPATH', $view_folder . DIRECTORY_SEPARATOR);
+
+/*
+	 * --------------------------------------------------------------------
+	 * LOAD PHP DOT ENV FILE
+	 * --------------------------------------------------------------------
+	 *
+	 * And away we go...
+	 *
+	 */
+require_once BASEPATH . 'dotenv/autoloader.php';
+
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
+
+$dotenv->load();
 
 /*
  * --------------------------------------------------------------------

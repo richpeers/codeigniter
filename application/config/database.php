@@ -74,12 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-    'dsn'  => 'mysql:host=localhost; dbname=codeigniter; charset=utf8;',
-	'hostname' => 'localhost',
-	'username' => 'homestead',
-	'password' => 'secret',
-	'database' => '',
-	'dbdriver' => 'pdo',
+    'dsn'  => getenv('DB_DSN'),
+	'hostname' => getenv('DB_HOST'),
+	'username' => getenv('DB_USERNAME'),
+	'password' => getenv('DB_PASSWORD'),
+	'database' => getenv('DB_DATABASE'),
+	'dbdriver' => getenv('DB_CONNECTION'),
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
@@ -94,3 +94,9 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+//$db['default']['hostname'] = getenv('DB_HOST');
+//$db['default']['username'] = getenv('DB_USERNAME');
+//$db['default']['password'] = getenv('DB_PASSWORD');
+//$db['default']['database'] = getenv('DB_DATABASE');
+//$db['default']['dbdriver'] = getenv('DB_CONNECTION');
