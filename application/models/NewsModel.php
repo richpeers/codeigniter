@@ -2,36 +2,43 @@
 
 class NewsModel extends CI_Model
 {
-    public function __construct()
-    {
-        Parent::__construct();
+	/**
+	 * NewsModel constructor.
+	 */
+	public function __construct()
+	{
+		Parent::__construct();
+		$this->load->database();
+	}
 
-        $this->load->database();
-    }
+	/**
+	 * @param bool $slug
+	 * @return mixed
+	 */
+	public function getNews($slug = FALSE)
+	{
+		if ($slug === FALSE) {
+			$query = $this->db->get('news');
+			return $query->result_array();
+		}
 
-    public function getNews($slug = FALSE)
-    {
-        if ($slug === FALSE) {
-            $query = $this->db->get('news');
-            return $query->result_array();
-        }
+		$query = $this->db->get_where('news', array('slug' => $slug));
+		return $query->row_array();
+	}
 
-        $query = $this->db->get_where('news', array('slug' => $slug));
-        return $query->row_array();
-    }
+	/**
+	 * @return mixed
+	 */
+	public function setNews()
+	{
+		$this->load->helper('url');
 
-    public function setNews()
-    {
-        $this->load->helper('url');
+		$slug = url_title($this->input->post('title'), 'dash', TRUE);
 
-        $slug = url_title($this->input->post('title'), 'dash', TRUE);
-
-        $data = array(
-            'title' => $this->input->post('title'),
-            'slug' => $slug,
-            'text' => $this->input->post('text')
-        );
-
-        return $this->db->insert('news', $data);
-    }
+		return $this->db->insert('news', [
+			'title' => $this->input->post('title'),
+			'slug' => $slug,
+			'text' => $this->input->post('text')
+		]);
+	}
 }

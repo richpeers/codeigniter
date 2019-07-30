@@ -25,10 +25,8 @@
 						<?php echo validation_errors(); ?>
 					</div>
 
-					<div class="pt-1 text-right">
-						<button type="submit" name="submit" class="btn btn-success">Save</button>
-						<a href="/news" class="btn btn-danger ml-2">Cancel</a>
-					</div>
+					<button type="submit" name="submit" class="btn btn-outline-success">Save</button>
+					<a href="/news" class="btn btn-outline-danger ml-2">Cancel</a>
 
 				</div>
 
