@@ -15,12 +15,14 @@
 
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="/news">News</a>
-				</li>
-			</ul>
+			<div class="navbar-nav">
+				<a class="nav-item nav-link" href="/news">News</a>
+			</div>
 
+			<div class="navbar-nav mr-auto">
+				<a class="nav-item nav-link" href="https://github.com/richpeers/codeigniter" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+				<a class="nav-item nav-link" href="https://www.linkedin.com/in/richpeers" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+			</div>
 			<ul class="navbar-nav ml-auto">
 				<?php if ($auth->guest()) { ?>
 					<a class="btn btn-outline-light mr-3" href="/login">Login</a>
